@@ -73,3 +73,13 @@ interface Expected {
   > View solutions: https://tsch.js.org/8/solutions
   > More Challenges: https://tsch.js.org
 */
+
+// getJSON(url).then(jsonData => {
+//   // 这是一个回调函数，他会在解析得到JSON值
+//   // 之后被异步调用，并接受该JSON值作为参数
+//   console.log(jsonData)
+// })
+
+// function displayUserProfile(profile) {}
+
+// getJSON('https://api.example.com/user/123').then(displayUserProfile);
