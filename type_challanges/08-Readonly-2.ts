@@ -34,8 +34,13 @@
 
 /* _____________ Your Code Here _____________ */
 
-type MyReadonly2<T, K> = 
-
+// 1.
+type MyReadonly2<T, K extends keyof T = keyof T> = Omit<T, K> & { readonly [P in K]: T[P] };
+// 2.
+// type MyReadonly2<T, K extends  keyof T = keyof T > = {
+//   [P in keyof T]: P extends K ? Readonly<T[P]> : T[P]
+// }
+// Omit<T, K> & Readonly<T>;
 /* _____________ Test Cases _____________ */
 import type { Alike, Expect } from '@type-challenges/utils'
 
@@ -83,3 +88,16 @@ interface Expected {
 // function displayUserProfile(profile) {}
 
 // getJSON('https://api.example.com/user/123').then(displayUserProfile);
+
+/*
+先筛除K指定的属性，然后把剩下的属性原样保留。
+再添加readonly属性（K）
+
+1.type MyReadonly2<T, K extends keyof T = keyof T> = T & {
+  readonly [P in K]: T[P];
+};
+
+2.type MyReadonly2<T, K extends  keyof T = keyof T > = {
+  [P in keyof T]: P extends K ? Readonly<T[P]> : T[P]
+}
+*/
