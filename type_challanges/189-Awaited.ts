@@ -21,8 +21,8 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-type MyAwaited<T> = T extends null | undefined ? T : T extends { then: (onfulfilled: (arg: infer Anwser, ...args) => any) => any} ? MyAwaited<Anwser> : T 
+type MyAwaited<T> = T extends PromiseLike<infer R> ? Awaited<R> : T
+// type MyAwaited<T> = T extends null | undefined ? T : T extends { then: (onfulfilled: (arg: infer Anwser, ...args) => any) => any} ? MyAwaited<Anwser> : T 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 
