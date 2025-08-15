@@ -19,8 +19,13 @@
 
 /* _____________ Your Code Here _____________ */
 
-type AnyOf<T extends readonly any[]> = any
-
+type AnyOf<T extends readonly any[]> = T extends [infer First, ...infer Rest]
+  ? First extends 0 | '' | false | [] | null | undefined
+    ? AnyOf<Rest>
+    : First extends Record<string, never> //特别处理空对象
+      ? AnyOf<Rest>
+      :true
+  :false
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 

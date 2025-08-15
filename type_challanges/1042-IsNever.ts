@@ -23,7 +23,7 @@
 
 /* _____________ Your Code Here _____________ */
 
-type IsNever<T> = any
+type IsNever<T> = [T] extends [never] ? true : false
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -43,4 +43,10 @@ type cases = [
   > Share your solutions: https://tsch.js.org/1042/answer
   > View solutions: https://tsch.js.org/1042/solutions
   > More Challenges: https://tsch.js.org
+*/
+
+
+/*
+在TS中，never类型是一个空的联合类型，而条件类型在处理联合类型时会进行分发，所以要用方括号包裹类型
+组织条件类型的分发
 */
