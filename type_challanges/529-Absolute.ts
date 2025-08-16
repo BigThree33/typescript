@@ -19,7 +19,8 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Absolute<T extends number | string | bigint> = any
+type Absolute<T extends number | string | bigint> = 
+  `${T}` extends `-${infer R}` ? R : `${T}` 
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -42,4 +43,8 @@ type cases = [
   > Share your solutions: https://tsch.js.org/529/answer
   > View solutions: https://tsch.js.org/529/solutions
   > More Challenges: https://tsch.js.org
+*/
+
+/*
+当使用模板字面量类型时，会将数字或BigInt转换为字符串，下划线分隔符会被自动移除
 */
